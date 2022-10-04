@@ -78,7 +78,7 @@ export default {
             const password = this.$refs.password.value;
             const confirmedPassword = this.$refs.confirmedPassword.value;
             if (password === confirmedPassword){
-                axios.post("http://localhost:3001/api/auth/signup",{
+                axios.post("http://localhost:3000/api/auth/signup",{
                 // Données à envoyer
                     lastName, firstName, email, password, confirmedPassword
                 },

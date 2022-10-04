@@ -266,7 +266,7 @@ export default {
             const postId = this.$route.params.id;
             const token = JSON.parse(localStorage.user).token;
             
-            axios.get(`http://localhost:3001/api/post/${postId}`, {headers: {Authorization: 'Bearer ' + token}})
+            axios.get(`http://localhost:3000/api/post/${postId}`, {headers: {Authorization: 'Bearer ' + token}})
             .then(res => {
                 if (res.data[0] === undefined){
                     this.post = 0
@@ -337,7 +337,7 @@ export default {
                     console.log(pair[0]+ ', ' + pair[1]); 
                 }
 
-                axios.put(`http://localhost:3001/api/post/${postId}`,
+                axios.put(`http://localhost:3000/api/post/${postId}`,
                 // Données à envoyer
                     formDataPost
                 ,
@@ -367,7 +367,7 @@ export default {
         deletePost(id){
             const postId = id;
             const token = JSON.parse(localStorage.user).token;
-            axios.delete(`http://localhost:3001/api/post/${postId}`, {headers: {Authorization: 'Bearer ' + token}})
+            axios.delete(`http://localhost:3000/api/post/${postId}`, {headers: {Authorization: 'Bearer ' + token}})
             .then((res) => {
                 if(res.status === 200) {
                     alert(res.data.message);
@@ -389,7 +389,7 @@ export default {
                 const opinion = 1;
                 const alreadyRated = true;
 
-                axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                 // Données à envoyer
                     userId, postId, opinion, alreadyRated
                 },
@@ -408,7 +408,7 @@ export default {
                     const opinion = 2;
                     const alreadyRated = false;
 
-                    axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                    axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                         // Données à envoyer
                         userId, postId, opinion, alreadyRated
                     },
@@ -427,7 +427,7 @@ export default {
                 const opinion = 2;
                 const alreadyRated = true;
 
-                    axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                    axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                         // Données à envoyer
                         userId, postId, opinion, alreadyRated
                     },
@@ -446,7 +446,7 @@ export default {
                 const opinion = 2;
                 const alreadyRated = true;
 
-                    axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                    axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                         // Données à envoyer
                         userId, postId, opinion, alreadyRated
                     },
@@ -475,7 +475,7 @@ export default {
                 const opinion = 1;
                 const alreadyRated = true;
 
-                axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                 // Données à envoyer
                     userId, postId, opinion, alreadyRated
                 },
@@ -494,7 +494,7 @@ export default {
                     const opinion = -2;
                     const alreadyRated = false;
 
-                    axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                    axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                         // Données à envoyer
                         userId, postId, opinion, alreadyRated
                     },
@@ -513,7 +513,7 @@ export default {
                 const opinion = -2;
                 const alreadyRated = true;
 
-                    axios.post(`http://localhost:3001/api/post/${postId}/opinion`,{
+                    axios.post(`http://localhost:3000/api/post/${postId}/opinion`,{
                         // Données à envoyer
                         userId, postId, opinion, alreadyRated
                     },

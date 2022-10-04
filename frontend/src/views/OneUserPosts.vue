@@ -180,7 +180,7 @@ export default {
         },
         getUserPosts(){
             const token = JSON.parse(localStorage.user).token; // Récupèrer le token du localStorage
-            axios.get(`http://localhost:3001/api/post/user`, {
+            axios.get(`http://localhost:3000/api/post/user`, {
                 headers: {
                     'Authorization': 'Bearer ' + token,
                     'Content-Type': 'application/json'
@@ -245,7 +245,7 @@ export default {
                     console.log(pair[0]+ ', ' + pair[1]); 
                 }
 
-                axios.put(`http://localhost:3001/api/post/${postId}`,
+                axios.put(`http://localhost:3000/api/post/${postId}`,
                 // Données à envoyer
                     formDataPost
                 ,

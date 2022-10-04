@@ -167,7 +167,7 @@ export default {
         },
         getAllPosts(){
             const token = JSON.parse(localStorage.user).token;
-            axios.get("http://localhost:3001/api/post", {
+            axios.get("http://localhost:3000/api/post", {
                 headers: {
                     'Authorization': 'Bearer ' + token,
                     'Content-Type': 'application/json'
@@ -233,7 +233,7 @@ export default {
                     console.log(pair[0]+ ', ' + pair[1]); 
                 }
 
-                axios.put(`http://localhost:3001/api/post/${postId}`,
+                axios.put(`http://localhost:3000/api/post/${postId}`,
                 // Données à envoyer
                     formDataPost
                 ,
@@ -263,7 +263,7 @@ export default {
         deletePost(id){
             const postId = id;
             const token = JSON.parse(localStorage.user).token;
-            axios.delete(`http://localhost:3001/api/post/${postId}`, {headers: {Authorization: 'Bearer ' + token}})
+            axios.delete(`http://localhost:3000/api/post/${postId}`, {headers: {Authorization: 'Bearer ' + token}})
             .then((res) => {
                 if(res.status === 200) {
                     alert(res.data.message);

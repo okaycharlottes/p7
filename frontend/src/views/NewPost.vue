@@ -124,7 +124,7 @@ export default {
                 formDataPost.append("image", image);
 
                 const token = JSON.parse(localStorage.user).token;
-                axios.post("http://localhost:3001/api/post/",
+                axios.post("http://localhost:3000/api/post/",
                 // Données à envoyer
                     formDataPost
                 ,

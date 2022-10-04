@@ -59,7 +59,7 @@ import axios from "axios"
         login() {
           const email = this.$refs.email.value;
           const password = this.$refs.password.value;
-          axios.post("http://localhost:3001/api/auth/login",{
+          axios.post("http://localhost:3000/api/auth/login",{
             // Données à envoyer
             email, password
             },
