@@ -5,11 +5,16 @@ const multer = require('../midleware/multer-config')
 
 const router = express.Router();
 
+//console.log("routteeetettete");
+router.get('/user', auth, postCtrl.getAllPostsUser);
 router.post('/',auth, multer, postCtrl.createPost);
 router.get('/:id', auth, postCtrl.getOnePost);
+
 router.put('/:id', auth, multer, postCtrl.modifyPost);
 router.delete('/:id', auth, postCtrl.deletePost);
 router.get('/', auth, postCtrl.getAllPosts);
 router.post('/:id/like', auth, postCtrl.likedNoLiked);
+
+
 
 module.exports = router;

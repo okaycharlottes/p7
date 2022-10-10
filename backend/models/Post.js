@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 
 const PostSchema = mongoose.Schema({
-    userId: { type: String, require: true },
-    dateCreate: { type: String, require: true },
-    //lastName: { type: String, require: true },
-    //firstName: { type: String, require: true },
-    titre: { type: String, require: true },
+    user_id: { type: String, require: true },
+    creation_date: { type: Date, require: true, default: Date.now  },
+    last_name: { type: String, require: true , default: 'toto'},
+    first_name: { type: String, require: true , default: 'toto' },
+    title: { type: String, require: true },
     description: { type: String, require: true },
-    imageUrl: { type: String, require: false },
+    image_url: { type: String, require: false },
     likes: { type: Number, require: true, default: 0 },
     usersLiked: { type: [String], require: true, default: [] },
+    disLikes: { type: Number, require: true, default: 0 },
+    usersDisLiked: { type: [String], require: true, default: [] },
 }
 )
 module.exports = mongoose.model('Post', PostSchema);
