@@ -7,7 +7,7 @@ import Account from '../views/Account.vue'
 import Profile from '../views/Profile.vue'
 import Forum from '../views/Forum.vue'
 import NewPost from '../views/NewPost.vue'
-import OnePost from '../views/OnePost.vue'
+//import OnePost from '../views/OnePost.vue'
 import OneUserPosts from '../views/OneUserPosts.vue'
 
 Vue.use(VueRouter)
@@ -53,11 +53,11 @@ const routes = [
     name: 'OneUserPosts',
     component: OneUserPosts
   },
-  {
+  /*{
     path: '/account/forum/posts/:id',
     name: 'OnePost',
     component: OnePost
-  }
+  }*/
 ]
 
 const router = new VueRouter({

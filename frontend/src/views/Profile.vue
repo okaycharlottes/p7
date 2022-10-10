@@ -24,7 +24,7 @@
                                 <p class="black--text text-center text-sm-left data grey lighten-3">Nom</p>
                             </v-col>
                             <v-col cols="12" sm="9">
-                                <p class="black--text data grey lighten-1 text-center">{{ userProfile.lastName }}</p>
+                                <p class="black--text data grey lighten-1 text-center">{{ userProfile.last_name }}</p>
                             </v-col>
                         </v-row>
                         <!-- PRÉNOM -->
@@ -33,7 +33,7 @@
                                 <p class="black--text text-center text-sm-left data grey lighten-3">Prénom</p>
                             </v-col>
                             <v-col cols="12" sm="9">
-                                <p class="black--text data grey lighten-1 text-center">{{ userProfile.firstName }}</p>
+                                <p class="black--text data grey lighten-1 text-center">{{ userProfile.first_name }}</p>
                             </v-col>
                         </v-row>
                         <!-- EMAIL -->
@@ -83,7 +83,9 @@ export default {
         // Si l'utilisateur a accès à cette page (est connecté)
         if (this.accedAccount === true) {
             const token = JSON.parse(localStorage.user).token; // Récupèrer le token du localStorage
+            //console.log(JSON.parse(localStorage.user).token);
             let decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET"); // Décoder ce token en le vérifiant
+            console.log(decodedToken);
             this.sessionUserId = decodedToken.userId; // l'ID de l'user pour la session = l'user Id décodé
             this.sessionUserRole = decodedToken.adminRole; // le rôle de l'user pour la session = le rôle admin décodé
             this.getUserProfile();
@@ -107,6 +109,7 @@ export default {
             axios.get(`http://localhost:3000/api/auth/users/${userId}`, {headers: {Authorization: 'Bearer ' + token}})
             .then(res => {
                 this.userProfile = res.data; // Infos de l'user
+                console.log(this.userProfile);
             })
         },
         deleteUser(){
@@ -117,6 +120,7 @@ export default {
                 axios.delete(`http://localhost:3000/api/auth/users/${userId}`, {headers: {Authorization: 'Bearer ' + token}})
                 .then(res => {
                     // Si l'inscription a bien été effectuée
+                    //console.log("affichage de a reponse de l'api DELETE USER: "+res);
                     if (res.status === 200){
                         localStorage.removeItem('user');
                         alert(res.data.message);
@@ -124,8 +128,8 @@ export default {
                     }
                 })
                 .catch(error => {
-                    console.log(error.response.data.error);
-                    alert(error.response.data.error);
+                    //console.log("affichage de l'erreur de l'api DELETE USER: "+error);
+                    alert(error);
                     location.reload()
                 })
             }

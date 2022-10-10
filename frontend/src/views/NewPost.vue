@@ -26,7 +26,7 @@
                             <v-form ref="form" v-model="valid" >
                                 <v-text-field v-model="title" ref="title" :rules="titleRules" counter="70" label="Titre du post (*)" type="text" required prepend-icon="mdi-format-title" color="black" outlined clearable clear-icon="mdi-eraser"></v-text-field>
                                 <v-textarea v-model="description" ref="description" :rules="descriptionRules" counter="320" label="Description du post (*)" type="text" prepend-icon="mdi-text" color="black" outlined clearable clear-icon="mdi-eraser" auto-grow></v-textarea>
-                                <v-file-input v-model="image" ref="image" :rules="imageRules" accept="image/gif" label="Image du post" type="file" filled prepend-icon="mdi-camera" show-size color="black"></v-file-input>
+                                <v-file-input v-model="image" ref="image" :rules="imageRules" accept="image/*" label="Image du post" type="file" filled prepend-icon="mdi-camera" show-size color="black"></v-file-input>
                                 <div class="my-1 text-right">Champs requis (*)</div>
                                 <v-divider class="mt-9"></v-divider>
                                 <v-card-actions class="d-flex justify-space-between">
@@ -115,7 +115,7 @@ export default {
                 var extensionFile = fileName.slice(lastDot, fileName.length).toLowerCase();
             }
 
-            if (extensionFile == "gif" || image === undefined || image === ""){
+            if (extensionFile == "gif" || extensionFile == "png" || extensionFile == "jpg" || extensionFile == "jpeg" || image === undefined || image === "") {
                 const formDataPost = new FormData();
                 // Ajouter des nouvelles paires clé/valeur 
                 formDataPost.append("userId", userId);
@@ -124,7 +124,7 @@ export default {
                 formDataPost.append("image", image);
 
                 const token = JSON.parse(localStorage.user).token;
-                axios.post("http://localhost:3000/api/post/",
+                axios.post("http://localhost:3000/api/posts/",
                 // Données à envoyer
                     formDataPost
                 ,

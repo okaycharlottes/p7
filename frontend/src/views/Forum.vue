@@ -27,12 +27,16 @@ import HeaderLogged from '../components/HeaderLogged.vue'
 import Posts from '../components/Posts.vue'
 import PostsNav from '../components/PostsNav.vue'
 
+
+
+
 export default {
     name: "Forum",
     components: {
         HeaderLogged,
         PostsNav,
         Posts,
+       
     },
     data(){
         return {
