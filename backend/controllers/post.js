@@ -1,7 +1,7 @@
 const Post = require('../models/Post');
 const User = require('../models/User');
 const fs = require('fs');
-const { useReducer } = require('react');
+//const { useReducer } = require('react');
 //const bodyParser = require('body-parser')
 
 
@@ -62,8 +62,8 @@ exports.modifyPost = (req, res) => {
 
   //Vérifie si l'utilisateur corresponds à la requéte
   //if (req.body.userId != req.auth.userId) {
-  console.log("PostObject.userId " + postObject.userId)
-  console.log("req.auth.userId " + req.auth.userId)
+  //console.log("PostObject.userId " + postObject.userId)
+  //console.log("req.auth.userId " + req.auth.userId)
 
 
 
@@ -104,11 +104,11 @@ exports.likedNoLiked = (req, res) => {
   Post.findOne({ _id: req.params.id })
     .then(post => {
 
-      console.log(req.body.like);
-      console.log(!post.usersLiked.includes(req.auth.userId));
-      console.log(post.usersDisLiked);
+      //console.log(req.body.like);
+      //console.log(!post.usersLiked.includes(req.auth.userId));
+      //console.log(post.usersDisLiked);
 
-      if (req.body.like == 1 && !post.usersLiked.includes(req.auth.userId)) {
+      if (req.body.like == 1 && !post.usersLiked.includes(req.auth.userId) && !post.usersDisLiked.includes(req.auth.userId)) {
 
         // Si l'utilisateur authentifié n'est pas contenu dans tableau 'usersLiked'
         // Et si like = 1 => Incrémente likes et ajoute l'utilisateur dans tableau 'usersLiked'
@@ -148,53 +148,7 @@ exports.likedNoLiked = (req, res) => {
     .catch(error => res.status(400).json({ error }))
 }
 
-exports.likedNoLiked2 = (req, res) => {
-  Post.findOne({ _id: req.params.id })
-    .then(post => {
 
-      console.log(!post.usersDisliked.includes(req.auth.userId))
-      //Si user like, il faut qu'il nest ni liké ni disliké auparavant
-      if (req.body.like == 1 && !post.usersLiked.includes(req.auth.userId) && !post.usersDisLiked.includes(req.auth.userId)) {
-
-        // Si l'utilisateur authentifié n'est pas contenu dans tableau 'usersLiked'
-        // Et si like = 1 => Incrémente likes et ajoute l'utilisateur dans tableau 'usersLiked'
-        Post.updateOne({ _id: req.params.id }, { $inc: { likes: 1 }, $push: { usersLiked: req.auth.userId } })
-          .then(() => res.status(200).json({ message: "Incremente likes et ajoute un utilisateur qui aime !" }))
-          .catch(error => res.status(400).json({ error }))
-      } else {
-        if (req.body.like == 1 && post.usersLiked.includes(req.auth.userId)) {
-
-          // Si like = 0, et que l'utilisateur est dans le tableau 'usersLiked'
-          Post.updateOne({ _id: req.params.id }, { $inc: { likes: -1 }, $pull: { usersLiked: req.auth.userId } })
-            .then(() => { res.status(200).json({ message: "Décrément likes et enléve un utilisateur qui aime !" }) })
-            .catch(error => res.status(400).json({ error }))
-        }
-
-        //Si user dislike, il faut qu'il nest ni liké ni disliké auparavant
-        else if (req.body.like == 2 && !post.usersLiked.includes(req.auth.userId) && !post.usersDisLiked.includes(req.auth.userId)) {
-
-          // Si l'utilisateur authentifié n'est pas contenu dans tableau 'usersDisLiked'
-          // Et si like = 2 => Incrémente dislikes et ajoute l'utilisateur dans tableau 'usersDisLiked'
-          Post.updateOne({ _id: req.params.id }, { $inc: { disLikes: 1 }, $push: { usersDisLiked: req.auth.userId } })
-            .then(() => res.status(200).json({ message: "Incremente dislikes et ajoute un utilisateur qui aime pas !" }))
-            .catch(error => res.status(400).json({ error }))
-            .catch(error => res.status(400).json({ error }))
-        } else {
-          if (req.body.like == 2 && post.usersDisLiked.includes(req.auth.userId)) {
-  
-            // Si like = 0, et que l'utilisateur est dans le tableau 'usersLiked'
-            Post.updateOne({ _id: req.params.id }, { $inc: { disLikes: -1 }, $pull: { usersDisLiked: req.auth.userId } })
-              .then(() => { res.status(200).json({ message: "Décrément dislikes et enléve un utilisateur qui aime pas !" }) })
-              .catch(error => res.status(400).json({ error }))
-          }
-          else{
-            res.status(400).json({ message: "aucune action choisie" });
-          }
-        }
-      }
-    })
-    .catch(error => res.status(400).json({ error }))
-}
 
 // Suppression objet Post
 exports.deletePost = (req, res) => {

@@ -85,7 +85,7 @@ export default {
             const token = JSON.parse(localStorage.user).token; // Récupèrer le token du localStorage
             //console.log(JSON.parse(localStorage.user).token);
             let decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET"); // Décoder ce token en le vérifiant
-            console.log(decodedToken);
+            //console.log(decodedToken);
             this.sessionUserId = decodedToken.userId; // l'ID de l'user pour la session = l'user Id décodé
             this.sessionUserRole = decodedToken.adminRole; // le rôle de l'user pour la session = le rôle admin décodé
             this.getUserProfile();
@@ -109,7 +109,7 @@ export default {
             axios.get(`http://localhost:3000/api/auth/users/${userId}`, {headers: {Authorization: 'Bearer ' + token}})
             .then(res => {
                 this.userProfile = res.data; // Infos de l'user
-                console.log(this.userProfile);
+                //console.log(this.userProfile);
             })
         },
         deleteUser(){

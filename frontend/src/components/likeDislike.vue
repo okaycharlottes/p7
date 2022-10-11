@@ -3,14 +3,14 @@
         <!-- LIGNE 4 -->
         <div class="d-flex flex-md-row align-center mb-1">
             <div class="px-2 text-body-1">
-                <v-btn  :disabled="disabledLike ? disabled : ''" text icon aria-label="Liker ce post" :color="likeColor.color" @click="modifyLike()">
+                <v-btn  :disabled="disabledLike == 0" text icon aria-label="Liker ce post" :color="likeColor.color" @click="modifyLike()">
                     <v-icon>mdi-thumb-up</v-icon>
                 </v-btn>
                 {{ post.likes }}
             </div>
             <v-divider vertical class="red lighten-4"></v-divider>
             <div class="pl-2 text-body-1">
-                <v-btn  :disabled="disabledDisLike ? disabled : ''" text icon aria-label="Disliker ce post" :color="dislikeColor.color" @click="modifyDislike()">
+                <v-btn  :disabled="disabledDisLike == 0" text icon aria-label="Disliker ce post" :color="dislikeColor.color" @click="modifyDislike()">
                     <v-icon>mdi-thumb-down</v-icon>
                 </v-btn>
                 {{ post.disLikes }}
@@ -23,8 +23,10 @@
 <script>
 //import HeaderLogged from '../components/HeaderLogged.vue'
 //import PostsNav from '../components/PostsNav.vue'
+//import { getCurrentInstance } from 'vue';
 import jwt from "jsonwebtoken"
 import axios from 'axios'
+//import { ref } from 'vue';
 
 export default {
     name: "LikeDislike",
@@ -32,6 +34,7 @@ export default {
     data() {
         return {
             //Par défaut
+            //disabled: "",
             
             accedAccount: false, // Accès non autorisé à cette page
             sessionUserId: 0,
@@ -47,6 +50,8 @@ export default {
             //like: 0,
             disabledLike: 0,
             disabledDisLike : 0,
+
+            componentKey: 0,
            
         }
     },
@@ -157,8 +162,10 @@ export default {
                 })
                 .then(response => {
                     console.log(response);
-                    //this.$forceUpdate();
-                    location.reload();
+                  
+                    //permet de chercher les nouvelles valeurs du post et réactualiser l'affichage
+                    this.getOnePost();
+                    //location.reload();
                 })
                 .catch(error => {
                     console.log(error);
@@ -188,7 +195,10 @@ export default {
                 .then(response => {
                     console.log(response);
                     //this.$forceUpdate();
-                    location.reload();
+                    //location.reload();
+
+                    //permet de chercher les nouvelles valeurs du post et réactualiser l'affichage
+                    this.getOnePost();
                 })
 
 

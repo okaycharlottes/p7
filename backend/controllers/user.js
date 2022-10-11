@@ -23,12 +23,7 @@ exports.deleteUser = (req, res) => {
             if (user._id != req.auth.userId) {
                 res.status(401).json({ message: 'Not authorized' });
             } else {
-                /*const filename = post.imageUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
-                  Post.deleteOne({ _id: req.params.id })
-                    .then(() => res.status(204).json({ message: 'Post supprimé !' }))
-                    .catch(error => res.status(400).json({ error }));
-                });*/
+                
 
                 User.deleteOne({ _id: req.auth.userId })
                     .then(() => {

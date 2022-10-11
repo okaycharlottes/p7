@@ -51,7 +51,7 @@
                                     <div class="px-5 py-1 text-overline">Publié par {{ post.first_name }} {{
                                     post.last_name }} | Le {{ formatCreationDate(post.creation_date) }}</div>
                                     <v-divider class="red lighten-4 mb-3"></v-divider>
-                                    <!-- LIGNE 3 -->
+                                    <!-- LIGNE 3 
                                     <router-link class="router-link black--text"
                                         :to="{ name : 'OnePost', params: { id: post._id }}">
                                         <h3 class="px-5 py-2 text-h5">{{ post.title }}</h3>
@@ -60,7 +60,13 @@
                                             <v-img :src="post.image_url" contain width="200"
                                                 :alt="getImageAlt(post._id, post.image_url)" />
                                         </div>
-                                    </router-link>
+                                    </router-link>-->
+                                    <h3 class="px-5 py-2 text-h5">{{ post.title }}</h3>
+                                        <div class="px-5 py-2">{{ post.description }}</div>
+                                        <div class="px-5 pt-3 pb-5 d-flex justify-center">
+                                            <v-img :src="post.image_url" contain width="200"
+                                                :alt="getImageAlt(post._id, post.image_url)" />
+                                        </div>
                                     <v-divider class="mb-0 red lighten-4"></v-divider>
                                     <!-- LIGNE 4 -->
                                     <div class="d-flex flex-md-row align-center mb-1">
@@ -199,7 +205,7 @@ export default {
                 .then(res => {
 
                     this.posts = res.data; // Tous les posts de l'utilisateur
-                    console.log(this.posts);
+                    //console.log(this.posts);
                     console.log("Les posts de l'utilisateur " + this.sessionUserId + " sont bien affichés !");
                 })
             //.catch(error => console.log(error));

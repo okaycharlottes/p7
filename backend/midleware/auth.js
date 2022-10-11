@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
         const userId = decodedToken.userId;
         const adminRole = decodedToken.adminRole;
 
-        console.log("adminRole: "+adminRole);
+        //console.log("adminRole: "+adminRole);
         //Vérifie l'authentification
         req.auth = {
             userId: userId,

@@ -59,7 +59,7 @@
                         <div class="d-flex flex-md-row align-center mb-1">
                             
                             <v-divider vertical class="red lighten-4"></v-divider>
-                            <likeDislike v-bind:postId="post._id"></likeDislike>
+                            <likeDislike v-bind:postId="post._id" ></likeDislike>
                             
                             <v-divider vertical class="red lighten-4 ml-4"></v-divider>
                             <!--<div class="px-2 text-body-1">
@@ -185,10 +185,10 @@ export default {
             })
                 .then(res => {
                     this.posts = res.data; // Tous les posts
-                    console.log("getAllposts liste des posts:" )
-                    console.log(this.posts)
+                    //console.log("getAllposts liste des posts:" )
+                    //console.log(this.posts)
                     this.postsNumber = res.data.length;
-                    console.log("Tous les posts (" + this.postsNumber + ") s'affichent !");
+                    //console.log("Tous les posts (" + this.postsNumber + ") s'affichent !");
                 })
         },
         getImageAlt(postId, postImageURL) {
@@ -290,7 +290,7 @@ export default {
             axios.delete(`http://localhost:3000/api/posts/${postId}`, { headers: { Authorization: 'Bearer ' + token } })
                 .then((res) => {
 
-                    console.log("jhhjh")
+                    //console.log("jhhjh")
                     if (res.status === 200) {
                         alert(res.data.message);
                         location.reload()
