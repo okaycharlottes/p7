@@ -17,7 +17,6 @@
 - Installer les nodes modules : npm install
 - Lancer le serveur : npm run serve
 
-## La base de donnée se trouve sur le cloud avec MongoDB
-- Complètez la partie .env exemple avec votre connexion
+
 
 
