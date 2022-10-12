@@ -1,6 +1,9 @@
 ### Construisez une réseau social d'entreprise
 # Documentation du projet
 
+# Objectif
+> Construire un réseau social interne pour les employés de Groupomania pour faciliter les interactions entre collègues dans un cadre plus informel. Développer les parties front-end et back-end de l'application.
+
 ## Pour lancer le projet :
 # Lancer le backend
 
@@ -15,5 +18,6 @@
 - Lancer le serveur : npm run serve
 
 ## La base de donnée se trouve sur le cloud avec MongoDB
+- Complètez la partie .env exemple avec votre connexion
 
 
