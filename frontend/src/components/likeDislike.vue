@@ -33,21 +33,14 @@ export default {
     props: ['postId'],
     data() {
         return {
-            //Par défaut
-            //disabled: "",
             
             accedAccount: false, // Accès non autorisé à cette page
             sessionUserId: 0,
             sessionUserRole: 0,
             post: [],
-            //imageAlt: "",
-            //comments: [],
             likeColor: [],
             dislikeColor: [],
-            //dialogUpdatePost: false,
-            //dialogUpdateComment: false,
             valid: true,
-            //like: 0,
             disabledLike: 0,
             disabledDisLike : 0,
 
@@ -67,7 +60,6 @@ export default {
             this.sessionUserId = decodedToken.userId; // l'ID de l'user pour la session = l'user Id décodé
             this.sessionUserRole = decodedToken.adminRole; // le rôle de l'user pour la session = le rôle admin décodé
             this.getOnePost();
-            //this.getComments();
         }
     },
     methods: {
@@ -117,30 +109,7 @@ export default {
                         this.disabledDisLike = 1;
                     }
 
-                    /*if(this.post.opinion === null || this.post.opinion === 1) {// Pas d'opinion OU opinion annulée
-                        this.likeColor = { color: "green lighten-2" };
-                        this.dislikeColor = { color: "red lighten-3" };
-                    }
-                    if(this.post.opinion === 2) {// Post liké
-                        this.likeColor = { color: "green darken-2" };
-                        this.dislikeColor = { color: "red lighten-3" };
-                    }
-                    if(this.post.opinion === -2) {// Post disliké
-                        this.likeColor = { color: "green lighten-2" };
-                        this.dislikeColor = { color: "red accent-4" };
-                    }*/
-                   
-                    //console.log("likeDislike affichage du post:" )
-                    //console.log(this.post)
-                   
-                   
-                    //console.log("Le post " + this.post._id + " est bien affiché !");
-
-                    // Récupérer le nom de l'image qui sera le texte alternatif
-                    /*const image = this.post.image_url;
-                    const lastUnderscore = image.lastIndexOf("_");
-                    const lastSlash = image.lastIndexOf("/") + 1;
-                    this.imageAlt = image.slice(lastSlash, lastUnderscore).split("_").join(" ");*/
+                    
                 }
             })
         },        
@@ -149,8 +118,6 @@ export default {
             //Récupérer les données du post à envoyer
             //const userId = this.sessionUserId;
             const postId = this.post._id;
-            //const userOpinion = this.post.opinion;
-            //var like;
            
             axios.post(`http://localhost:3000/api/posts/${postId}/like`,{
                 // Données à envoyer
@@ -169,8 +136,7 @@ export default {
                 })
                 .catch(error => {
                     console.log(error);
-                    //this.$forceUpdate();
-                    //location.reload();
+                    
                 })
 
 
@@ -181,8 +147,7 @@ export default {
             //Récupérer les données du post à envoyer
             //const userId = this.sessionUserId;
             const postId = this.post._id;
-            //const userOpinion = this.post.opinion;
-            //var like;
+            
            
             axios.post(`http://localhost:3000/api/posts/${postId}/like`,{
                 // Données à envoyer
@@ -194,8 +159,7 @@ export default {
                 })
                 .then(response => {
                     console.log(response);
-                    //this.$forceUpdate();
-                    //location.reload();
+                    
 
                     //permet de chercher les nouvelles valeurs du post et réactualiser l'affichage
                     this.getOnePost();

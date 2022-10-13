@@ -53,11 +53,7 @@ const routes = [
     name: 'OneUserPosts',
     component: OneUserPosts
   },
-  /*{
-    path: '/account/forum/posts/:id',
-    name: 'OnePost',
-    component: OnePost
-  }*/
+  
 ]
 
 const router = new VueRouter({
